@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCodeBuilderNet.Core", "GCodeBuilderNet.Core\GCodeBuilderNet.Core.csproj", "{F61981E3-1553-4E9F-8103-211DF76941AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCodeBuilderNet.Core.Tests", "GCodeBuilderNet.Core.Tests\GCodeBuilderNet.Core.Tests.csproj", "{4E4FC758-0F91-42F9-94E0-4AADECD616ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F61981E3-1553-4E9F-8103-211DF76941AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F61981E3-1553-4E9F-8103-211DF76941AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F61981E3-1553-4E9F-8103-211DF76941AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F61981E3-1553-4E9F-8103-211DF76941AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E4FC758-0F91-42F9-94E0-4AADECD616ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E4FC758-0F91-42F9-94E0-4AADECD616ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E4FC758-0F91-42F9-94E0-4AADECD616ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E4FC758-0F91-42F9-94E0-4AADECD616ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7C4B582-F4B2-4F3F-B5B7-045C4D9371AC}
+	EndGlobalSection
+EndGlobal
