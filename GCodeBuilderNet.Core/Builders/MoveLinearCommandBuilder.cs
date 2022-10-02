@@ -40,15 +40,15 @@ namespace GCodeBuilderNet.Core.Builders
             return this;
         }
 
-        public MoveLinearCommandBuilder WithX(double x)
+        public MoveLinearCommandBuilder WithTargetX(double x)
         {
-            move.Coordinate = new Coordinate(x, move.Coordinate.Y);
+            move.Target = new Coordinate(x, move.Target.Y);
             return this;
         }
 
-        public MoveLinearCommandBuilder WithY(double y)
+        public MoveLinearCommandBuilder WithTargetY(double y)
         {
-            move.Coordinate = new Coordinate(move.Coordinate.X, y);
+            move.Target = new Coordinate(move.Target.X, y);
             return this;
         }
     }

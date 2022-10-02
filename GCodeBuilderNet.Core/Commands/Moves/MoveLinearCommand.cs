@@ -18,7 +18,7 @@ namespace GCodeBuilderNet.Core.Commands.Moves
 
         public string GetCommandText()
         {
-            return $"{CommandType} X{move.Coordinate.X} Y{move.Coordinate.Y} Z{move.Lift} F{move.Speed}";
+            return $"{CommandType} X{move.Target.X} Y{move.Target.Y} Z{move.Lift} F{move.Speed}";
         }
     }
 }

@@ -66,5 +66,23 @@ namespace GCodeBuilderNet.Core.Extensions
             return result;
         }
 
+        internal static GCommandType CommandType (this ArcDirection direction)
+        {
+            var result = GCommandType.G03;
+
+            switch (direction)
+            {
+                case ArcDirection.Clockwise:
+                    result = GCommandType.G02;
+                    break;
+                case ArcDirection.CounterClockwise:
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
     }
 }

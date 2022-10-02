@@ -7,8 +7,8 @@ namespace GCodeBuilderNet.Core.Builders
 {
     public interface IMoveCommandBuilder<Builder> : ICommandBuilder<Builder>
     {
-        Builder WithX(double x);
-        Builder WithY(double y);
+        Builder WithTargetX(double x);
+        Builder WithTargetY(double y);
         Builder WithCoordinateType(CoordinateType type);
     }
 }

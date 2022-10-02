@@ -15,6 +15,14 @@ namespace GCodeBuilderNet.Core.Commands
         /// </summary>
         G01,
         /// <summary>
+        /// Circular Interpolation CW
+        /// </summary>
+        G02,
+        /// <summary>
+        /// Circular Interpolation CCW
+        /// </summary>
+        G03,
+        /// <summary>
         /// Plane XY
         /// </summary>
         G17,

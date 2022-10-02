@@ -8,13 +8,11 @@ namespace GCodeBuilderNet.Core.Data.Positioning.Moves
 {
     internal abstract class MoveBase
     {
-        public Coordinate Coordinate { get; set; }
-        public CoordinateType Type { get; set; }
+        public Coordinate Target { get; set; } = Coordinate.ZERO;
+        public CoordinateType Type { get; set; } = CoordinateType.Absolute;
 
         protected MoveBase ()
         {
-            Coordinate = Coordinate.ZERO;
-            Type = CoordinateType.Absolute;
         }
     }
 }
