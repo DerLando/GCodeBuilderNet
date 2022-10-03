@@ -25,7 +25,7 @@ namespace GCodeBuilderNet.Core.Builders
 
         public MoveCircularCommandBuilder WithCenterY(double centerY)
         {
-            this.move.Center = new Coordinate(this.move.Center.X, y);
+            this.move.Center = new Coordinate(this.move.Center.X, centerY);
             return this;
         }
 
