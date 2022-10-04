@@ -19,7 +19,17 @@ namespace GCodeBuilderNet.Core.Commands.Moves
 
         public string GetCommandText()
         {
-            return $"{CommandType} X{move.Target.X} Y{move.Target.Y} Z{move.Lift} I{move.Center.X} J{move.Center.Y} {((move.Speed is null)? $"F{move.Speed}" : "")}";
+            var builder = new StringBuilder();
+            builder.Append(CommandType);
+            builder.Append($" X{move.Target.X.ToGCode()}");
+            builder.Append($" Y{move.Target.Y.ToGCode()}");
+            builder.Append($" Z{move.Lift.ToGCode()}");
+            builder.Append($" I{(move.Target - move.Center).X.ToGCode()}");
+            builder.Append($" J{(move.Target - move.Center).Y.ToGCode()}");
+            if (move.Speed.HasValue)
+                builder.Append($" F{move.Speed.Value.ToGCode()}");
+
+            return builder.ToString();
         }
     }
 }

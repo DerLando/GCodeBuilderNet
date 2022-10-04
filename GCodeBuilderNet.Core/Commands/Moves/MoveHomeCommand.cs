@@ -1,4 +1,5 @@
 ﻿using GCodeBuilderNet.Core.Data.Positioning;
+using GCodeBuilderNet.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,7 +16,7 @@ namespace GCodeBuilderNet.Core.Commands.Moves
             var builder = new StringBuilder();
             builder.Append(CommandType);
             if (IntermediateTarget.HasValue)
-                builder.Append($" X{IntermediateTarget.Value.X} Y{IntermediateTarget.Value.Y}");
+                _ = builder.Append($" X{IntermediateTarget.Value.X.ToGCode()} Y{IntermediateTarget.Value.Y.ToGCode()}");
 
             return builder.ToString();
         }

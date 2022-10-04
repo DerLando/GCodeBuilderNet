@@ -17,5 +17,10 @@ namespace GCodeBuilderNet.Core.Data.Positioning
             X = x;
             Y = y;
         }
+
+        public static Coordinate operator +(in Coordinate a) => a;
+        public static Coordinate operator -(in Coordinate a) => new Coordinate(-a.X, -a.Y);
+        public static Coordinate operator +(in Coordinate a, in Coordinate b) => new Coordinate(a.X + b.X, a.Y + b.Y);
+        public static Coordinate operator -(in Coordinate a, in Coordinate b) => a + (-b);
     }
 }
