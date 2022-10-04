@@ -1,6 +1,7 @@
 ﻿using GCodeBuilderNet.Core.Builders;
 using GCodeBuilderNet.Core.Data.Positioning;
 using GCodeBuilderNet.Core.Data.Program;
+using GCodeBuilderNet.RhinoCore.Extensions;
 using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,10 @@ namespace GCodeBuilderNet.RhinoCore.Converters
             var program =
                 new GCodeProgram()
                 .WithCommand(new MoveRapidCommandBuilder()
-                    .WithTargetX(curve.PointAtStart.X)
-                    .WithTargetY(curve.PointAtStart.Y)
+                    .WithTarget(curve.PointAtStart.ToCoordinate())
                     .Build())
                 .WithCommand(new MoveLinearCommandBuilder()
-                    .WithTargetX(curve.PointAtStart.X)
-                    .WithTargetY(curve.PointAtStart.Y)
+                    .WithTarget(curve.PointAtStart.ToCoordinate())
                     .WithLift(-1.0)
                     .Build())
                 ;
@@ -36,8 +35,7 @@ namespace GCodeBuilderNet.RhinoCore.Converters
                 if(segment is LineCurve)
                 {
                     program.WithCommand(new MoveLinearCommandBuilder()
-                        .WithTargetX(segment.PointAtEnd.X)
-                        .WithTargetY(segment.PointAtEnd.Y)
+                        .WithTarget(segment.PointAtEnd.ToCoordinate())
                         .WithLift(-1.0)
                         .Build());
                     continue;
@@ -52,16 +50,18 @@ namespace GCodeBuilderNet.RhinoCore.Converters
                         direction = ArcDirection.CounterClockwise;
 
                     program.WithCommand(new MoveCircularCommandBuilder()
-                        .WithCenterX(arc.Arc.Center.X)
-                        .WithCenterY(arc.Arc.Center.Y)
-                        .WithTargetX(arc.PointAtEnd.X)
-                        .WithTargetY(arc.PointAtEnd.Y)
+                        .WithCenter(arc.Arc.Plane.Origin.ToCoordinate())
+                        .WithTarget(arc.PointAtEnd.ToCoordinate())
                         .WithLift(-1.0)
                         .WithDirection(direction)
                         .Build());
                     continue;
                 }
             }
+
+            program.WithCommand(new MoveHomeCommandBuilder()
+                .WithTarget(curve.PointAtEnd.ToCoordinate())
+                .Build());
 
             return program;
         }

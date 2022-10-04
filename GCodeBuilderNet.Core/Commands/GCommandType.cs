@@ -43,6 +43,10 @@ namespace GCodeBuilderNet.Core.Commands
         /// </summary>
         G21,
         /// <summary>
+        /// Move to home position
+        /// </summary>
+        G28,
+        /// <summary>
         /// Absolute coordinates
         /// </summary>
         G90,

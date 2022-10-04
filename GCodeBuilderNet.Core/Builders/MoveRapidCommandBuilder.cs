@@ -28,15 +28,9 @@ namespace GCodeBuilderNet.Core.Builders
             return this;
         }
 
-        public MoveRapidCommandBuilder WithTargetX(double x)
+        public MoveRapidCommandBuilder WithTarget(Coordinate target)
         {
-            move.Target = new Coordinate(x, move.Target.Y);
-            return this;
-        }
-
-        public MoveRapidCommandBuilder WithTargetY(double y)
-        {
-            move.Target = new Coordinate(move.Target.X, y);
+            move.Target = target;
             return this;
         }
     }

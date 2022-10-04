@@ -22,15 +22,9 @@ namespace GCodeBuilderNet.Core.Builders
             return new MoveCircularCommand(move);
         }
 
-        public MoveCircularCommandBuilder WithCenterX(double centerX)
+        public MoveCircularCommandBuilder WithCenter(Coordinate center)
         {
-            this.move.Center = new Coordinate(centerX, this.move.Center.Y);
-            return this;
-        }
-
-        public MoveCircularCommandBuilder WithCenterY(double centerY)
-        {
-            this.move.Center = new Coordinate(this.move.Center.X, centerY);
+            this.move.Center = center;
             return this;
         }
 
@@ -58,15 +52,9 @@ namespace GCodeBuilderNet.Core.Builders
             return this;
         }
 
-        public MoveCircularCommandBuilder WithTargetX(double x)
+        public MoveCircularCommandBuilder WithTarget(Coordinate target)
         {
-            this.move.Target = new Coordinate(x, this.move.Target.Y);
-            return this;
-        }
-
-        public MoveCircularCommandBuilder WithTargetY(double y)
-        {
-            this.move.Target = new Coordinate(this.move.Target.X, y);
+            this.move.Target = target;
             return this;
         }
     }
