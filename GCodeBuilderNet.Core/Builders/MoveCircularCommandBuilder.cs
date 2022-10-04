@@ -12,6 +12,11 @@ namespace GCodeBuilderNet.Core.Builders
     {
         private readonly MoveCircular move;
 
+        public MoveCircularCommandBuilder()
+        {
+            this.move = new MoveCircular();
+        }
+
         public IGCommand Build()
         {
             return new MoveCircularCommand(move);
@@ -32,6 +37,12 @@ namespace GCodeBuilderNet.Core.Builders
         public MoveCircularCommandBuilder WithCoordinateType(CoordinateType type)
         {
             this.move.Type = type;
+            return this;
+        }
+
+        public MoveCircularCommandBuilder WithDirection(ArcDirection direction)
+        {
+            this.move.Direction = direction;
             return this;
         }
 

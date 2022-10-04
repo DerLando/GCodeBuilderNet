@@ -8,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GCodeBuilderNet.Rhino.Core.Converters
+namespace GCodeBuilderNet.RhinoCore.Converters
 {
-    internal static class PolyCurveConverter
+    public static class PolyCurveConverter
     {
-        internal static GCodeProgram Convert(PolyCurve curve)
+        public static GCodeProgram Convert(PolyCurve curve)
         {
             // Only planar curves please...
             if (!curve.TryGetPlane(out var plane))
@@ -54,6 +54,7 @@ namespace GCodeBuilderNet.Rhino.Core.Converters
                     program.WithCommand(new MoveCircularCommandBuilder()
                         .WithCenterX(arc.Arc.Center.X)
                         .WithCenterY(arc.Arc.Center.Y)
+                        .WithTargetX(arc.PointAtEnd.X)
                         .WithTargetY(arc.PointAtEnd.Y)
                         .WithLift(-1.0)
                         .WithDirection(direction)

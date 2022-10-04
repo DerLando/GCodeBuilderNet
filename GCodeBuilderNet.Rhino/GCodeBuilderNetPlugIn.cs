@@ -1,4 +1,6 @@
 ﻿using Rhino;
+using Rhino.FileIO;
+using Rhino.PlugIns;
 using System;
 
 namespace GCodeBuilderNet.Rhino
@@ -11,7 +13,7 @@ namespace GCodeBuilderNet.Rhino
     /// attributes in AssemblyInfo.cs (you might need to click "Project" ->
     /// "Show All Files" to see it in the "Solution Explorer" window).</para>
     ///</summary>
-    public class GCodeBuilderNetPlugIn : Rhino.PlugIns.FileExportPlugIn
+    public class GCodeBuilderNetPlugIn : FileExportPlugIn
     {
         public GCodeBuilderNetPlugIn()
         {
@@ -24,9 +26,9 @@ namespace GCodeBuilderNet.Rhino
         /// <summary>Defines file extensions that this export plug-in is designed to write.</summary>
         /// <param name="options">Options that specify how to write files.</param>
         /// <returns>A list of file types that can be exported.</returns>
-        protected override Rhino.PlugIns.FileTypeList AddFileTypes(Rhino.FileIO.FileWriteOptions options)
+        protected override FileTypeList AddFileTypes(FileWriteOptions options)
         {
-            var result = new Rhino.PlugIns.FileTypeList();
+            var result = new FileTypeList();
             result.AddFileType("GCode data (*.gcode)", "gcode");
             return result;
         }
@@ -40,9 +42,9 @@ namespace GCodeBuilderNet.Rhino
         /// <param name="doc">The document to be written.</param>
         /// <param name="options">Options that specify how to write file.</param>
         /// <returns>A value that defines success or a specific failure.</returns>
-        protected override Rhino.PlugIns.WriteFileResult WriteFile(string filename, int index, RhinoDoc doc, Rhino.FileIO.FileWriteOptions options)
+        protected override WriteFileResult WriteFile(string filename, int index, RhinoDoc doc, FileWriteOptions options)
         {
-            return Rhino.PlugIns.WriteFileResult.Failure;
+            return WriteFileResult.Failure;
         }
         // You can override methods here to change the plug-in behavior on
         // loading and shut down, add options pages to the Rhino _Option command
