@@ -24,9 +24,9 @@ namespace GCodeBuilderNet.RhinoCore.Converters
 
             foreach (var crv in curves)
             {
-                // Only planar crvs please
-                if (!crv.TryGetPlane(out var plane, 0.01))
-                    continue;
+                //// Only planar crvs please
+                //if (!crv.TryGetPlane(out var plane, 0.01))
+                //    continue;
 
                 if(crv is LineCurve line)
                 {
@@ -43,6 +43,11 @@ namespace GCodeBuilderNet.RhinoCore.Converters
                     program.Append(poly);
                     continue;
                 }
+                if(crv is PolylineCurve pline)
+                {
+                    program.Append(pline);
+                    continue;
+                }
 
                 Rhino.RhinoApp.WriteLine($"Failed to convert curve {crv}");
 
@@ -51,8 +56,36 @@ namespace GCodeBuilderNet.RhinoCore.Converters
             return program;
         }
 
-        internal static void Append(this GCodeProgram program, PolyCurve crv)
+        internal static void Append(this GCodeProgram program, PolylineCurve crv, bool moveTo = true)
         {
+            if (moveTo)
+            {
+                program
+                    .WithCommand(new MoveLinearCommandBuilder()
+                        .WithTarget(crv.PointAtStart.ToCoordinate())
+                        .WithLift(crv.PointAtStart.Z)
+                        .WithSpeed(200)
+                        .Build());
+            }
+
+            foreach (LineCurve segment in crv.DuplicateSegments())
+            {
+                program.Append(segment, false);
+            }
+        }
+
+        internal static void Append(this GCodeProgram program, PolyCurve crv, bool moveTo = true)
+        {
+            if(moveTo)
+            {
+                program
+                    .WithCommand(new MoveLinearCommandBuilder()
+                        .WithTarget(crv.PointAtStart.ToCoordinate())
+                        .WithLift(crv.PointAtStart.Z)
+                        .WithSpeed(200)
+                        .Build());
+            }
+
             foreach (var segment in crv.DuplicateSegments())
             {
                 if (segment is ArcCurve arc)
