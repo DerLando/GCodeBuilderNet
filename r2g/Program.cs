@@ -60,7 +60,7 @@ namespace r2g
                             {
                                 if (item.Geometry is PolyCurve curve)
                                 {
-                                    var gcode = PolyCurveConverter.Convert(curve);
+                                    var gcode = CurveConverter.Convert(curve);
                                     if(gcode != null)
                                     {
                                         gcode.Save(o.Output);

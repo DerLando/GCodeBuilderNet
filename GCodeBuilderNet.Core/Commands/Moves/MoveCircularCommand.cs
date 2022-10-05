@@ -24,8 +24,8 @@ namespace GCodeBuilderNet.Core.Commands.Moves
             builder.Append($" X{move.Target.X.ToGCode()}");
             builder.Append($" Y{move.Target.Y.ToGCode()}");
             builder.Append($" Z{move.Lift.ToGCode()}");
-            builder.Append($" I{(move.Target - move.Center).X.ToGCode()}");
-            builder.Append($" J{(move.Target - move.Center).Y.ToGCode()}");
+            builder.Append($" I{move.Center.X.ToGCode()}");
+            builder.Append($" J{move.Center.Y.ToGCode()}");
             if (move.Speed.HasValue)
                 builder.Append($" F{move.Speed.Value.ToGCode()}");
 
